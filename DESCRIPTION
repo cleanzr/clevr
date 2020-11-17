@@ -1,0 +1,39 @@
+Package: clevr
+Type: Package
+Title: clevr: Clustering and Link Prediction Evaluation in R
+Version: 0.1.0
+Date: 2020-11-13
+Authors@R: c(
+    person(given = "Neil", 
+           family = "Marchant", 
+           email = "ngmarchant@gmail.com", 
+           role = c("aut", "cre")),
+    person(given = "Rebecca",
+           family = "Steorts", 
+           email = "beka@stat.duke.edu",
+           role = c("aut")))
+Maintainer: Neil Marchant <ngmarchant@gmail.com>
+Description: Tools for evaluating link prediction and clustering algorithms 
+    with respect to ground truth. Includes efficient implementations of 
+    common performance measures such as pairwise precision/recall, 
+    cluster homogeneity/completeness, variation of information, 
+    Rand index etc.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: Rcpp (>= 1.0.5),
+    stats,
+    Matrix
+LinkingTo: Rcpp, BH (>= 1.69.0)
+RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)
+Suggests: knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
+Collate: 
+    'RcppExports.R'
+    'transformations.R'
+    'measures_pairs.R'
+    'measures_clusterings.R'
+    'package.R'
