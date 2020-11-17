@@ -419,10 +419,9 @@ v_measure_ct <- function(ct, beta=1.0) {
   pred_counts <- rowSums(ct)
   entropy_true <- entropy_counts(true_counts)
   entropy_pred <- entropy_counts(pred_counts)
-  if (entropy == 0) return(1.0)
   mi <- mutual_info_ct(ct)
-  completeness <- mi / entropy_true
-  homogeneity <- mi / entropy_pred
+  completeness <- ifelse(entropy_true==0, 1.0, mi / entropy_true)
+  homogeneity <- ifelse(entropy_pred==0, 1.0, mi / entropy_pred)
   if (homogeneity + completeness == 0.0) return(0.0)
   ((1 + beta) * homogeneity * completeness / (beta * homogeneity + completeness))
 }
