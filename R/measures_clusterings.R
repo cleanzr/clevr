@@ -1,5 +1,3 @@
-#' @include measures_pairs.R
-NULL
 
 #' @importFrom stats xtabs
 #' @importFrom Matrix rowSums colSums tcrossprod crossprod
@@ -94,7 +92,7 @@ eval_report_clusters <- function(true, pred) {
        "adj_rand_index" = adj_rand_index_ct(pair_ct),
        "variation_info" = variation_info_ct(ct),
        "mutual_info" = mutual_info_ct(ct),
-       "fowlkes_mallows" = fowlkes_mallows_ct(pair_ct))
+       "fowlkes_mallows" = fowlkes_mallows_ct(ct))
 }
 
 
@@ -191,8 +189,8 @@ adj_rand_index <- function(true, pred) {
 #'
 #' @export
 fowlkes_mallows <- function(true, pred) {
-  pair_ct <- pair_contingency_table_clusters(true, pred)
-  fowlkes_mallows_ct(pair_ct)
+  ct <- contingency_table_clusters(true, pred)
+  fowlkes_mallows_ct(ct)
 }
 
 
@@ -407,6 +405,19 @@ completeness_ct <- function(ct) {
   if (entropy == 0) return(1.0)
   mi <- mutual_info_ct(ct)
   mi / entropy
+}
+
+
+#' @param ct contingency table represented as a sparse matrix, specifically
+#'   an object of S4 class [`Matrix::dgCMatrix-class`]
+#' @importFrom Matrix rowSums colSums which
+#' @noRd
+fowlkes_mallows_ct <- function(ct) {
+  n <- sum(ct)
+  tk <- sum(ct^2) - n
+  pk <- sum(rowSums(ct)^2) - n
+  qk <- sum(colSums(ct)^2) - n
+  ifelse(tk == 0, 0.0, sqrt(tk / pk) * sqrt(tk / qk))
 }
 
 
