@@ -387,10 +387,10 @@ recall_ct <- function(ct) {
 f_measure_ct <- function(ct, beta=1.0) {
   if (beta < 0)
     stop("`beta` must be non-negative")
-  precision <- precision_ct(ct)
-  recall <- recall_ct(ct)
-  beta2 <- beta^2
-  (1 + beta2) * P * R / (beta2 * P + R)
+  P <- precision_ct(ct)
+  R <- recall_ct(ct)
+  alpha <- 1/(1 + beta^2)
+  1 / (alpha / P + (1 - alpha) / R)
 }
 
 specificity_ct <- function(ct) {
