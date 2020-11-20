@@ -50,6 +50,7 @@
 #'   represented.
 #'
 #' @export
+#' @importFrom stats na.fail
 #' @rdname clustering_representations
 clusters_to_membership <- function(clusters, elem_ids = NULL, clust_ids = NULL)
 {
@@ -93,6 +94,7 @@ clusters_to_membership <- function(clusters, elem_ids = NULL, clust_ids = NULL)
 }
 
 
+#' @importFrom stats na.fail
 #' @export
 #' @rdname clustering_representations
 membership_to_clusters <- function(membership, elem_ids = NULL, clust_ids = NULL) {
@@ -129,6 +131,7 @@ membership_to_clusters <- function(membership, elem_ids = NULL, clust_ids = NULL
 }
 
 
+#' @importFrom utils combn
 #' @export
 #' @rdname clustering_representations
 clusters_to_pairs <- function(clusters) {
@@ -167,6 +170,7 @@ membership_to_pairs <- function(membership, elem_ids = NULL) {
 }
 
 
+#' @importFrom stats na.fail na.omit na.action
 #' @export
 #' @rdname clustering_representations
 pairs_to_membership <- function(pairs, elem_ids) {
