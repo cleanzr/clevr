@@ -403,7 +403,7 @@ homogeneity_ct <- function(ct) {
 #' @noRd
 completeness_ct <- function(ct) {
   pred_counts <- rowSums(ct)
-  entropy <- entropy_counts(pi)
+  entropy <- entropy_counts(pred_counts)
   if (entropy == 0) return(1.0)
   mi <- mutual_info_ct(ct)
   mi / entropy
