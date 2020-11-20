@@ -1,0 +1,25 @@
+
+context("Most probable clusters")
+
+test_that("output of most probable clusters is correct on a simple example", {
+  samples <- rbind(c(1, 1, 2, 2), c(1, 1, 2, 2), c(1, 1, 2, 3))
+  result <- most_probable_clusters(samples)
+  expect_equal(result$clusters, list(c(1, 2), c(1, 2), c(3, 4), c(3, 4)))
+  expect_equal(result$probabilities, c(1, 1, 2/3, 2/3))
+})
+
+test_that("output of most probable clusters is correct when record ids are provided", {
+  samples <- rbind(c(1, 1, 2, 2), c(1, 1, 2, 2), c(1, 1, 2, 3))
+  result <- most_probable_clusters(samples, rec_ids = c("B", "D", "C", "A"))
+  expect_equal(result$clusters, list("B" = c("B", "D"), "D" = c("B", "D"), "C" = c("C", "A"), "A" = c("C", "A")))
+  expect_equal(result$probabilities, c("B" = 1, "D" = 1, "C" = 2/3, "A" = 2/3))
+})
+
+context("Shared most probable clusters")
+
+test_that("output of shared most probable clusters is correct on a simple example", {
+  samples <- rbind(c(1, 1, 2, 2), c(1, 1, 2, 2), c(1, 1, 2, 3))
+  result <- shared_most_probable_clusters(samples)
+  expect_equal(shared_most_probable_clusters(samples),
+               list(c(3, 4), c(1, 2)))
+})

@@ -36,6 +36,6 @@ VignetteBuilder: knitr
 Collate: 
     'RcppExports.R'
     'clevr.R'
+    'measures_clusterings.R'
     'transformations.R'
     'measures_pairs.R'
-    'measures_clusterings.R'
