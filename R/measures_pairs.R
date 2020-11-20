@@ -372,7 +372,6 @@ precision_pairs_ct <- function(ct) {
   tp <- ct["TRUE", "TRUE"]
   fp <- ct["TRUE", "FALSE"]
   pp <- tp + fp
-  if (is.na(pp) || pp == 0) return(NA)
   return(tp / pp)
 }
 
@@ -380,7 +379,6 @@ recall_pairs_ct <- function(ct) {
   tp <- ct["TRUE", "TRUE"]
   fn <- ct["FALSE", "TRUE"]
   p <- tp + fn
-  if (is.na(p) || p == 0) return(NA)
   return(tp / p)
 }
 
@@ -397,7 +395,6 @@ specificity_pairs_ct <- function(ct) {
   fp <- ct["TRUE", "FALSE"]
   tn <- ct["FALSE", "FALSE"]
   n <- tn + fp
-  if (is.na(n) || n == 0) return(NA)
   tn / n
 }
 
@@ -408,7 +405,6 @@ accuracy_pairs_ct <- function(ct) {
   tn <- ct["FALSE", "FALSE"]
   correct <- tp + tn
   total <- tp + fp + tn + fn
-  if (is.na(total) || total == 0) return(NA)
   correct/total
 }
 
@@ -421,4 +417,5 @@ balanced_accuracy_pairs_ct <- function(ct) {
 fowlkes_mallows_pairs_ct <- function(ct) {
   P <- precision_pairs_ct(ct)
   R <- recall_pairs_ct(ct)
+  sqrt(P) * sqrt(R)
 }
