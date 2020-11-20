@@ -57,6 +57,8 @@ clusters_to_membership <- function(clusters, elem_ids = NULL, clust_ids = NULL)
     # Check provided clust_ids for consistency
     if (length(clust_ids) != length(clusters))
       stop("`clust_ids` must be the same length as `clusters`")
+    tryCatch(na.fail(clust_ids), error = function(e)
+      stop("`clust_ids` cannot contain NA values"))
   } else {
     # Infer clust_ids from names first, falling back to integer ids
     if (!is.null(names(clusters))) {
@@ -67,15 +69,19 @@ clusters_to_membership <- function(clusters, elem_ids = NULL, clust_ids = NULL)
   }
 
   clust_sizes <- sapply(clusters, length)
-  if (!is.null(elem_ids) && sum(clust_sizes) != length(elem_ids))
-    stop("`elem_ids` does not match number of elements in `clusters`")
+  if (!is.null(elem_ids)) {
+    if (sum(clust_sizes) != length(elem_ids))
+      stop("`elem_ids` does not match number of elements in `clusters`")
+    tryCatch(na.fail(elem_ids), error = function(e)
+      stop("`elem_ids` cannot contain NA values"))
+  }
 
   membership <- rep(clust_ids, times=clust_sizes)
   names(membership) <- as.character(unlist(clusters))
 
   # Reorder membership vector
   if (!is.null(elem_ids)) {
-    # Use order in elem_ids, but first check consistency
+    # Use order in elem_ids
     membership <- membership[as.character(elem_ids)]
   } else {
     # Order lexicographically by name
@@ -94,8 +100,10 @@ membership_to_clusters <- function(membership, elem_ids = NULL, clust_ids = NULL
     # Check provided elem_ids for consistency
     if (length(elem_ids) != length(membership))
       stop("`elem_ids` must be the same length as `membership`")
+    tryCatch(na.fail(elem_ids), error = function(e)
+      stop("`elem_ids` cannot contain NA values"))
   } else {
-    # Infer clust_ids from names first, falling back to integer ids
+    # Infer elem_ids from names first, falling back to integer ids
     if (!is.null(names(membership))) {
       elem_ids <- names(membership)
     } else {
@@ -108,6 +116,8 @@ membership_to_clusters <- function(membership, elem_ids = NULL, clust_ids = NULL
   # Reorder clusters list
   if (!is.null(clust_ids)) {
     # Use order in clust_ids, but first check consistency
+    tryCatch(na.fail(clust_ids), error = function(e)
+      stop("`clust_ids` cannot contain NA values"))
     clusters <- clusters[as.character(clust_ids)]
   } else {
     # Order lexicographically by name
@@ -162,6 +172,13 @@ membership_to_pairs <- function(membership, elem_ids = NULL) {
 pairs_to_membership <- function(pairs, elem_ids) {
   # Need to convert to matrix in order for factor to work below
   pairs <- as.matrix(pairs)
+  pairs <- na.omit(pairs)
+
+  if (ncol(pairs) != 2) stop("`pairs` must have exactly two columns")
+  if (length(na.action(pairs))!= 0)
+    warning("rows with NA values were removed from `pairs`")
+
+  tryCatch(na.fail(elem_ids), error = function(e) stop("`elem_ids` cannot contain NA values"))
 
   # Transform pairs so that elem_ids are represented as integers starting at 0
   original_dim <- dim(pairs)
@@ -173,6 +190,8 @@ pairs_to_membership <- function(pairs, elem_ids) {
   pairs_elem_ids <- levels(pairs)
 
   membership <- pairs_to_membership_cpp(pairs, length(elem_ids))
+  # R indexing starts at 1
+  membership <- membership + 1
 
   # Fill names with elem_ids
   char_elem_ids <- as.character(elem_ids)
@@ -217,8 +236,7 @@ pairs_to_clusters <- function(pairs, elem_ids) {
 #'
 #' @export
 canonicalize_pairs <- function(pairs, ordered=FALSE) {
-  if (dim(pairs)[2] != 2)
-    stop("second dimension of `pairs` must be of size 2")
+  if (ncol(pairs) != 2) stop("`pairs` must have exactly two columns")
 
   pairs <- as.matrix(pairs)
 
