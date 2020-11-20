@@ -1,4 +1,4 @@
 library(testthat)
-library(evaluater)
+library(clevr)
 
-test_check("evaluater")
+test_check("clevr")
