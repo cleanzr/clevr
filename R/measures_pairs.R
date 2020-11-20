@@ -118,13 +118,13 @@ contingency_table_pairs <- function(true_pairs, pred_pairs, num_pairs=NULL, orde
 eval_report_pairs <- function(true_pairs, pred_pairs, num_pairs = NULL, ordered=FALSE)
 {
   ct <- contingency_table_pairs(true_pairs, pred_pairs, num_pairs = num_pairs, ordered = ordered)
-  list("precision" = precision_ct(ct),
-       "recall" = recall_ct(ct),
-       "specificity" = specificity_ct(ct),
-       "sensitivity" = recall_ct(ct),
-       "f1score" = fscore_ct(ct),
-       "accuracy" = accuracy_ct(ct),
-       "balanced_accuracy" = balanced_accuracy_ct(ct))
+  list("precision" = precision_pairs_ct(ct),
+       "recall" = recall_pairs_ct(ct),
+       "specificity" = specificity_pairs_ct(ct),
+       "sensitivity" = recall_pairs_ct(ct),
+       "f1score" = f_measure_pairs_ct(ct),
+       "accuracy" = accuracy_pairs_ct(ct),
+       "balanced_accuracy" = balanced_accuracy_pairs_ct(ct))
 }
 
 
@@ -153,7 +153,7 @@ eval_report_pairs <- function(true_pairs, pred_pairs, num_pairs = NULL, ordered=
 #' @export
 precision_pairs <- function(true_pairs, pred_pairs, ordered=FALSE) {
   ct <- contingency_table_pairs(true_pairs, pred_pairs, ordered = ordered)
-  precision_ct(ct)
+  precision_pairs_ct(ct)
 }
 
 
@@ -183,7 +183,7 @@ precision_pairs <- function(true_pairs, pred_pairs, ordered=FALSE) {
 #' @export
 recall_pairs <- function(true_pairs, pred_pairs, ordered=FALSE) {
   ct <- contingency_table_pairs(true_pairs, pred_pairs, ordered = ordered)
-  recall_ct(ct)
+  recall_pairs_ct(ct)
 }
 
 
@@ -229,7 +229,7 @@ sensitivity_pairs <- function(true_pairs, pred_pairs, ordered=FALSE) {
 #' @export
 f_measure_pairs <- function(true_pairs, pred_pairs, beta=1, ordered=FALSE) {
   ct <- contingency_table_pairs(true_pairs, pred_pairs, ordered = ordered)
-  f_measure_ct(ct, beta)
+  f_measure_pairs_ct(ct, beta)
 }
 
 
@@ -260,7 +260,7 @@ f_measure_pairs <- function(true_pairs, pred_pairs, beta=1, ordered=FALSE) {
 #' @export
 specificity_pairs <- function(true_pairs, pred_pairs, num_pairs, ordered=FALSE) {
   ct <- contingency_table_pairs(true_pairs, pred_pairs, num_pairs = num_pairs, ordered = ordered)
-  specificity_ct(ct)
+  specificity_pairs_ct(ct)
 }
 
 
@@ -295,7 +295,7 @@ specificity_pairs <- function(true_pairs, pred_pairs, num_pairs, ordered=FALSE) 
 #' @export
 accuracy_pairs <- function(true_pairs, pred_pairs, num_pairs, ordered=FALSE) {
   ct <- contingency_table_pairs(true_pairs, pred_pairs, num_pairs = num_pairs, ordered = ordered)
-  accuracy_ct(ct)
+  accuracy_pairs_ct(ct)
 }
 
 
@@ -330,7 +330,7 @@ accuracy_pairs <- function(true_pairs, pred_pairs, num_pairs, ordered=FALSE) {
 #' @export
 balanced_accuracy_pairs <- function(true_pairs, pred_pairs, num_pairs, ordered=FALSE) {
   ct <- contingency_table_pairs(true_pairs, pred_pairs, num_pairs = num_pairs, ordered = ordered)
-  balanced_accuracy_ct(ct)
+  balanced_accuracy_pairs_ct(ct)
 }
 
 
@@ -363,12 +363,12 @@ balanced_accuracy_pairs <- function(true_pairs, pred_pairs, num_pairs, ordered=F
 #' @export
 fowlkes_mallows_pairs <- function(true_pairs, pred_pairs, ordered=FALSE) {
   ct <- contingency_table_pairs(true_pairs, pred_pairs, ordered = ordered)
-  fowlkes_mallows_ct(ct)
+  fowlkes_mallows_pairs_ct(ct)
 }
 
 
 # Definition of measures in terms of contingency table
-precision_ct <- function(ct) {
+precision_pairs_ct <- function(ct) {
   tp <- ct["TRUE", "TRUE"]
   fp <- ct["TRUE", "FALSE"]
   pp <- tp + fp
@@ -376,7 +376,7 @@ precision_ct <- function(ct) {
   return(tp / pp)
 }
 
-recall_ct <- function(ct) {
+recall_pairs_ct <- function(ct) {
   tp <- ct["TRUE", "TRUE"]
   fn <- ct["FALSE", "TRUE"]
   p <- tp + fn
@@ -384,16 +384,16 @@ recall_ct <- function(ct) {
   return(tp / p)
 }
 
-f_measure_ct <- function(ct, beta=1.0) {
+f_measure_pairs_ct <- function(ct, beta=1.0) {
   if (beta < 0)
     stop("`beta` must be non-negative")
-  P <- precision_ct(ct)
-  R <- recall_ct(ct)
+  P <- precision_pairs_ct(ct)
+  R <- recall_pairs_ct(ct)
   alpha <- 1/(1 + beta^2)
   1 / (alpha / P + (1 - alpha) / R)
 }
 
-specificity_ct <- function(ct) {
+specificity_pairs_ct <- function(ct) {
   fp <- ct["TRUE", "FALSE"]
   tn <- ct["FALSE", "FALSE"]
   n <- tn + fp
@@ -401,7 +401,7 @@ specificity_ct <- function(ct) {
   tn / n
 }
 
-accuracy_ct <- function(ct) {
+accuracy_pairs_ct <- function(ct) {
   tp <- ct["TRUE", "TRUE"]
   fp <- ct["TRUE", "FALSE"]
   fn <- ct["FALSE", "TRUE"]
@@ -412,14 +412,13 @@ accuracy_ct <- function(ct) {
   correct/total
 }
 
-balanced_accuracy_ct <- function(ct) {
-  sensitivity <- recall_ct(ct)
-  specificity <- specificity_ct(ct)
+balanced_accuracy_pairs_ct <- function(ct) {
+  sensitivity <- recall_pairs_ct(ct)
+  specificity <- specificity_pairs_ct(ct)
   (sensitivity + specificity) / 2
 }
 
-fowlkes_mallows_ct <- function(ct) {
-  precision <- precision_ct(ct)
-  recall <- recall_ct(ct)
-  sqrt(precision * recall)
+fowlkes_mallows_pairs_ct <- function(ct) {
+  P <- precision_pairs_ct(ct)
+  R <- recall_pairs_ct(ct)
 }
