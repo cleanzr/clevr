@@ -240,6 +240,8 @@ canonicalize_pairs <- function(pairs, ordered=FALSE) {
 
   pairs <- as.matrix(pairs)
 
+  if (nrow(pairs) == 0) return(pairs)
+
   # Sort entries in each row lexicographically
   if (!ordered) {
     pairs <- t(apply(pairs, 1, sort))
