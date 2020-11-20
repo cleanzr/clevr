@@ -434,7 +434,8 @@ v_measure_ct <- function(ct, beta=1.0) {
   completeness <- ifelse(entropy_true==0, 1.0, mi / entropy_true)
   homogeneity <- ifelse(entropy_pred==0, 1.0, mi / entropy_pred)
   if (homogeneity + completeness == 0.0) return(0.0)
-  ((1 + beta) * homogeneity * completeness / (beta * homogeneity + completeness))
+  alpha <- 1/(1 + beta^2)
+  1 / (alpha / homogeneity + (1 - alpha) / completeness)
 }
 
 
