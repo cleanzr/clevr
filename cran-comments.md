@@ -1,9 +1,8 @@
-Description of release. What has changed. No reverse dependencies.
+First release on CRAN.
 
 ## Test environments
-* macOS, R 4.0.1
 * Fedora 33, R 4.0.3
-* Windows 10, R 4.0.3
+* winbuilder, R Under development (unstable) (2020-11-27 r79522)
 
 ## R CMD check results
 

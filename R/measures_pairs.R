@@ -43,6 +43,11 @@ contingency_table_pairs <- function(true_pairs, pred_pairs, num_pairs=NULL, orde
       stop("num_pairs must be a positive scalar or NULL")
   }
 
+  # Binding pairs ensures that they are coerced to the same type
+  comb_pairs <- rbind(true_pairs, pred_pairs)
+  true_pairs <- comb_pairs[seq_len(nrow(true_pairs)),]
+  pred_pairs <- comb_pairs[nrow(true_pairs) + seq_len(nrow(pred_pairs)),]
+
   # Canonicalize pairs
   pred_pairs <- as.data.frame(canonicalize_pairs(pred_pairs, ordered = ordered))
   true_pairs <- as.data.frame(canonicalize_pairs(true_pairs, ordered = ordered))
