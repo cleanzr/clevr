@@ -36,6 +36,13 @@ The \eqn{\beta}{β}-weighted F-measure is defined as the weighted
 harmonic mean of precision \eqn{P} and recall \eqn{R}:
 \deqn{(1 + \beta^2)\frac{P \cdot R}{\beta^2 \cdot P + R}.}{(1 + β^2)·P·R/(β^2·P + R).}
 }
+\examples{
+true_pairs <- rbind(c(1,2), c(2,3), c(1,3)) # ground truth is 3-clique
+pred_pairs <- rbind(c(1,2), c(2,3))         # prediction misses one edge
+num_pairs <- 3                              # assuming 3 elements
+f_measure_pairs(true_pairs, pred_pairs, num_pairs)
+
+}
 \references{
 Van Rijsbergen, C. J. "Information Retrieval." (2nd ed.).
 Butterworth-Heinemann, USA, (1979).

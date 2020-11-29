@@ -29,3 +29,9 @@ by the first element id, then by the second element id.
 Coerce a collection of element pairs into canonical form. Facilitates
 testing of equivalence.
 }
+\examples{
+messy_pairs <- rbind(c(2,1), c(1,2), c(3,1), c(1,2))
+clean_pairs <- canonicalize_pairs(messy_pairs)
+all(rbind(c(1,2), c(1,3)) == clean_pairs) # duplicates removed and order fixed
+
+}

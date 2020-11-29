@@ -26,6 +26,12 @@ is high if clustering \eqn{t} only assigns members of a cluster to
 a single cluster in \eqn{p}. The homogeneity ranges between 0
 and 1, where 1 indicates a perfect homogeneity.
 }
+\examples{
+true <- c(1,1,1,2,2)  # ground truth clustering
+pred <- c(1,1,2,2,2)  # predicted clustering
+homogeneity(true, pred)
+
+}
 \references{
 Rosenberg, A. and Hirschberg, J. "V-measure: A conditional entropy-based external cluster evaluation measure." \emph{Proceedings of the 2007 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning} (EMNLP-CoNLL), (2007).
 }

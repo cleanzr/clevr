@@ -32,3 +32,9 @@ Returns a list containing the following measures:
 Compute various evaluation measures for a predicted
 clustering using a ground truth clustering as a reference.
 }
+\examples{
+true <- c(1,1,1,2,2)  # ground truth clustering
+pred <- c(1,1,2,2,2)  # predicted clustering
+eval_report_clusters(true, pred)
+
+}

@@ -28,6 +28,12 @@ perfect match between the clusterings. It is equivalent to the
 normalised mutual information, when the aggregation function is the
 arithmetic mean.
 }
+\examples{
+true <- c(1,1,1,2,2)  # ground truth clustering
+pred <- c(1,1,2,2,2)  # predicted clustering
+v_measure(true, pred)
+
+}
 \references{
 Rosenberg, A. and Hirschberg, J. "V-measure: A conditional entropy-based external cluster evaluation measure." \emph{Proceedings of the 2007 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning} (EMNLP-CoNLL), (2007).
 

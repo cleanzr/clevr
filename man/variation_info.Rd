@@ -28,6 +28,12 @@ on the space of clusterings. It is unnormalized and varies between
 clustered elements. Larger values of the distance metric correspond
 to greater dissimilarity between the clusterings.
 }
+\examples{
+true <- c(1,1,1,2,2)  # ground truth clustering
+pred <- c(1,1,2,2,2)  # predicted clustering
+variation_info(true, pred)
+
+}
 \references{
 Arabie, P. and Boorman, S. A. "Multidimensional scaling of measures of
 distance between partitions." \emph{Journal of Mathematical Psychology} \strong{10:2},

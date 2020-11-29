@@ -31,3 +31,10 @@ The precision is defined as:
   where \eqn{T} is the set of true coreferent pairs and \eqn{P} is the
 set of predicted coreferent pairs.
 }
+\examples{
+true_pairs <- rbind(c(1,2), c(2,3), c(1,3)) # ground truth is 3-clique
+pred_pairs <- rbind(c(1,2), c(2,3))         # prediction misses one edge
+num_pairs <- 3                              # assuming 3 elements
+precision_pairs(true_pairs, pred_pairs, num_pairs)
+
+}

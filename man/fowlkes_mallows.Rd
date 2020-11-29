@@ -23,6 +23,12 @@ such as a predicted and ground truth clustering.
 The Fowlkes-Mallows index is defined as the geometric mean of
 precision and recall, computed with respect to pairs of elements.
 }
+\examples{
+true <- c(1,1,1,2,2)  # ground truth clustering
+pred <- c(1,1,2,2,2)  # predicted clustering
+fowlkes_mallows(true, pred)
+
+}
 \references{
 Fowlkes, E. B. and Mallows, C. L. "A Method for Comparing Two Hierarchical
 Clusterings." \emph{Journal of the American Statistical Association} \strong{78:383},

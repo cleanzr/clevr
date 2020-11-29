@@ -36,6 +36,25 @@ NULL
 #' derived from binary contingency matrices, like the ones output by this
 #' function.
 #'
+#' @examples
+#' ### Example where pairs/edges are undirected
+#' # ground truth is 3-clique
+#' true_pairs <- rbind(c(1,2), c(2,3), c(1,3))
+#' # prediction misses one edge
+#' pred_pairs <- rbind(c(1,2), c(2,3))
+#' # total number of pairs assuming 3 elements
+#' num_pairs <- 3 * (3 - 1) / 2
+#' eval_report_pairs(true_pairs, pred_pairs, num_pairs)
+#'
+#' ### Example where pairs/edges are directed
+#' # ground truth is a 3-star
+#' true_pairs <- rbind(c(2,1), c(3,1), c(4,1))
+#' # prediction gets direction of one edge incorrect
+#' pred_pairs <- rbind(c(2,1), c(3,1), c(1,4))
+#' # total number of pairs assuming 4 elements
+#' num_pairs <- 4 * 4
+#' eval_report_pairs(true_pairs, pred_pairs, num_pairs, ordered = TRUE)
+#'
 #' @export
 contingency_table_pairs <- function(true_pairs, pred_pairs, num_pairs=NULL, ordered=FALSE) {
   if (!is.null(num_pairs)) {
@@ -119,6 +138,25 @@ contingency_table_pairs <- function(true_pairs, pred_pairs, num_pairs=NULL, orde
 #' @seealso The [`contingency_table_pairs`] function can be used to compute
 #'   the contingency table for entity resolution or record linkage problems.
 #'
+#' @examples
+#' ### Example where pairs/edges are undirected
+#' # ground truth is 3-clique
+#' true_pairs <- rbind(c(1,2), c(2,3), c(1,3))
+#' # prediction misses one edge
+#' pred_pairs <- rbind(c(1,2), c(2,3))
+#' # total number of pairs assuming 3 elements
+#' num_pairs <- 3 * (3 - 1) / 2
+#' eval_report_pairs(true_pairs, pred_pairs, num_pairs)
+#'
+#' ### Example where pairs/edges are directed
+#' # ground truth is a 3-star
+#' true_pairs <- rbind(c(2,1), c(3,1), c(4,1))
+#' # prediction gets direction of one edge incorrect
+#' pred_pairs <- rbind(c(2,1), c(3,1), c(1,4))
+#' # total number of pairs assuming 4 elements
+#' num_pairs <- 4 * 4
+#' eval_report_pairs(true_pairs, pred_pairs, num_pairs, ordered = TRUE)
+#'
 #' @export
 eval_report_pairs <- function(true_pairs, pred_pairs, num_pairs = NULL, ordered=FALSE)
 {
@@ -155,6 +193,12 @@ eval_report_pairs <- function(true_pairs, pred_pairs, num_pairs = NULL, ordered=
 #'   Defaults to FALSE, which is appropriate for clustering, undirected link
 #'   prediction, record linkage etc.
 #'
+#' @examples
+#' true_pairs <- rbind(c(1,2), c(2,3), c(1,3)) # ground truth is 3-clique
+#' pred_pairs <- rbind(c(1,2), c(2,3))         # prediction misses one edge
+#' num_pairs <- 3                              # assuming 3 elements
+#' precision_pairs(true_pairs, pred_pairs, num_pairs)
+#'
 #' @export
 precision_pairs <- function(true_pairs, pred_pairs, ordered=FALSE) {
   ct <- contingency_table_pairs(true_pairs, pred_pairs, ordered = ordered)
@@ -183,6 +227,12 @@ precision_pairs <- function(true_pairs, pred_pairs, ordered=FALSE) {
 #'   pair \eqn{(x, y)} is distinct from pair \eqn{(y, x)} for \eqn{x \neq y}.
 #'   Defaults to FALSE, which is appropriate for clustering, undirected link
 #'   prediction, record linkage etc.
+#'
+#' @examples
+#' true_pairs <- rbind(c(1,2), c(2,3), c(1,3)) # ground truth is 3-clique
+#' pred_pairs <- rbind(c(1,2), c(2,3))         # prediction misses one edge
+#' num_pairs <- 3                              # assuming 3 elements
+#' recall_pairs(true_pairs, pred_pairs, num_pairs)
 #'
 #' @rdname recall_pairs
 #' @export
@@ -231,6 +281,12 @@ sensitivity_pairs <- function(true_pairs, pred_pairs, ordered=FALSE) {
 #' Van Rijsbergen, C. J. "Information Retrieval." (2nd ed.).
 #' Butterworth-Heinemann, USA, (1979).
 #'
+#' @examples
+#' true_pairs <- rbind(c(1,2), c(2,3), c(1,3)) # ground truth is 3-clique
+#' pred_pairs <- rbind(c(1,2), c(2,3))         # prediction misses one edge
+#' num_pairs <- 3                              # assuming 3 elements
+#' f_measure_pairs(true_pairs, pred_pairs, num_pairs)
+#'
 #' @export
 f_measure_pairs <- function(true_pairs, pred_pairs, beta=1, ordered=FALSE) {
   ct <- contingency_table_pairs(true_pairs, pred_pairs, ordered = ordered)
@@ -261,6 +317,12 @@ f_measure_pairs <- function(true_pairs, pred_pairs, beta=1, ordered=FALSE) {
 #'   pair \eqn{(x, y)} is distinct from pair \eqn{(y, x)} for \eqn{x \neq y}.
 #'   Defaults to FALSE, which is appropriate for clustering, undirected link
 #'   prediction, record linkage etc.
+#'
+#' @examples
+#' true_pairs <- rbind(c(1,2), c(2,3), c(1,3)) # ground truth is 3-clique
+#' pred_pairs <- rbind(c(1,2), c(2,3))         # prediction misses one edge
+#' num_pairs <- 3                              # assuming 3 elements
+#' specificity_pairs(true_pairs, pred_pairs, num_pairs)
 #'
 #' @export
 specificity_pairs <- function(true_pairs, pred_pairs, num_pairs, ordered=FALSE) {
@@ -297,6 +359,12 @@ specificity_pairs <- function(true_pairs, pred_pairs, num_pairs, ordered=FALSE) 
 #'   Defaults to FALSE, which is appropriate for clustering, undirected link
 #'   prediction, record linkage etc.
 #'
+#' @examples
+#' true_pairs <- rbind(c(1,2), c(2,3), c(1,3)) # ground truth is 3-clique
+#' pred_pairs <- rbind(c(1,2), c(2,3))         # prediction misses one edge
+#' num_pairs <- 3                              # assuming 3 elements
+#' accuracy_pairs(true_pairs, pred_pairs, num_pairs)
+#'
 #' @export
 accuracy_pairs <- function(true_pairs, pred_pairs, num_pairs, ordered=FALSE) {
   ct <- contingency_table_pairs(true_pairs, pred_pairs, num_pairs = num_pairs, ordered = ordered)
@@ -332,6 +400,12 @@ accuracy_pairs <- function(true_pairs, pred_pairs, num_pairs, ordered=FALSE) {
 #'   Defaults to FALSE, which is appropriate for clustering, undirected link
 #'   prediction, record linkage etc.
 #'
+#' @examples
+#' true_pairs <- rbind(c(1,2), c(2,3), c(1,3)) # ground truth is 3-clique
+#' pred_pairs <- rbind(c(1,2), c(2,3))         # prediction misses one edge
+#' num_pairs <- 3                              # assuming 3 elements
+#' balanced_accuracy_pairs(true_pairs, pred_pairs, num_pairs)
+#'
 #' @export
 balanced_accuracy_pairs <- function(true_pairs, pred_pairs, num_pairs, ordered=FALSE) {
   ct <- contingency_table_pairs(true_pairs, pred_pairs, num_pairs = num_pairs, ordered = ordered)
@@ -364,6 +438,12 @@ balanced_accuracy_pairs <- function(true_pairs, pred_pairs, num_pairs, ordered=F
 #' Fowlkes, E. B. and Mallows, C. L. "A Method for Comparing Two Hierarchical
 #' Clusterings." _Journal of the American Statistical Association_ **78:383**,
 #' 553-569, (1983). DOI: [10.1080/01621459.1983.10478008](https://doi.org/10.1080/01621459.1983.10478008).
+#'
+#' @examples
+#' true_pairs <- rbind(c(1,2), c(2,3), c(1,3)) # ground truth is 3-clique
+#' pred_pairs <- rbind(c(1,2), c(2,3))         # prediction misses one edge
+#' num_pairs <- 3                              # assuming 3 elements
+#' fowlkes_mallows_pairs(true_pairs, pred_pairs, num_pairs)
 #'
 #' @export
 fowlkes_mallows_pairs <- function(true_pairs, pred_pairs, ordered=FALSE) {

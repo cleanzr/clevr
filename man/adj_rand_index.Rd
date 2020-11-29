@@ -31,6 +31,12 @@ of 1 indicates that the clusterings are identical, while a value of
 0 indicates the clusterings are drawn randomly independent of one
 another.
 }
+\examples{
+true <- c(1,1,1,2,2)  # ground truth clustering
+pred <- c(1,1,2,2,2)  # predicted clustering
+adj_rand_index(true, pred)
+
+}
 \references{
 Hubert, L., Arabie, P. "Comparing partitions." \emph{Journal of Classification}
 \strong{2}, 193–218 (1985). DOI: \href{https://doi.org/10.1007/BF01908075}{10.1007/BF01908075}

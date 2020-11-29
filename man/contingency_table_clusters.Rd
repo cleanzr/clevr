@@ -24,6 +24,12 @@ cluster \eqn{i} in \code{pred} and cluster \eqn{j} in \code{true}.
 Compute the contingency table for a \emph{predicted} clustering
 given a \emph{ground truth} clustering.
 }
+\examples{
+true <- c(1,1,1,2,2)  # ground truth clustering
+pred <- c(1,1,2,2,2)  # predicted clustering
+contingency_table_clusters(true, pred)
+
+}
 \seealso{
 \code{\link{eval_report_clusters}} computes common evaluation measures derived
 from the output of this function.

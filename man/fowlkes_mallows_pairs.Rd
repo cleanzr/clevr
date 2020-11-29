@@ -30,6 +30,13 @@ The Fowlkes-Mallows index is defined as the geometric mean of
 precision \eqn{P} and recall \eqn{R}:
 \deqn{\sqrt{P R}.}{√(P·R).}
 }
+\examples{
+true_pairs <- rbind(c(1,2), c(2,3), c(1,3)) # ground truth is 3-clique
+pred_pairs <- rbind(c(1,2), c(2,3))         # prediction misses one edge
+num_pairs <- 3                              # assuming 3 elements
+fowlkes_mallows_pairs(true_pairs, pred_pairs, num_pairs)
+
+}
 \references{
 Fowlkes, E. B. and Mallows, C. L. "A Method for Comparing Two Hierarchical
 Clusterings." \emph{Journal of the American Statistical Association} \strong{78:383},

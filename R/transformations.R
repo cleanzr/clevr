@@ -3,9 +3,6 @@
 #' @description
 #' Transform between different representations of a clustering.
 #'
-#' @details TODO: summarize different representations:
-#' membership, clusters, pairs
-#'
 #' @param clusters a representation of a clustering as a list of vectors,
 #'   where the i-th vector contains the identifiers of elements assigned to the
 #'   i-th cluster. If `clust_ids` is specified (see below), the i-th cluster
@@ -48,6 +45,35 @@
 #'   co-clustered. This representation results in loss of information, as
 #'   singleton clusters (with one element) and cluster identifiers are not
 #'   represented.
+#'
+#' @examples
+#' ## A clustering of three items represented as a membership vector
+#' m <- c("Item1" = 1, "Item2" = 2, "Item3" = 1)
+#'
+#' # Transform to list of clusters
+#' membership_to_clusters(m)
+#' # Specify different identifiers for the items
+#' membership_to_clusters(m, elem_ids = c(1, 2, 3))
+#' # Transform to array of pairs that are co-clustered
+#' membership_to_pairs(m)
+#'
+#' ## A clustering represented as a list of clusters
+#' cl <- list("ClustA" = c(1,3), "ClustB" = c(2))
+#'
+#' # Transform to membership vector representation
+#' clusters_to_membership(cl)
+#' # Transform to array of pairs that are co-clustered
+#' clusters_to_pairs(cl)
+#'
+#' ## A clustering (incompletely) represented as an array of pairs that
+#' ## are co-clustered
+#' p <- rbind(c(1,3)) # pairs of elements in the same cluster
+#' ids <- c(1,2,3)    # necessary to specify set of all elements
+#'
+#' # Transform to membership vector representation
+#' pairs_to_membership(p, ids)
+#' # Transform to list of clusters
+#' pairs_to_clusters(p, ids)
 #'
 #' @export
 #' @importFrom stats na.fail
@@ -237,6 +263,11 @@ pairs_to_clusters <- function(pairs, elem_ids) {
 #'   * duplicate pairs are removed; and
 #'   * the rows in the matrix/data.frame pairs are sorted lexicographically
 #'     by the first element id, then by the second element id.
+#'
+#' @examples
+#' messy_pairs <- rbind(c(2,1), c(1,2), c(3,1), c(1,2))
+#' clean_pairs <- canonicalize_pairs(messy_pairs)
+#' all(rbind(c(1,2), c(1,3)) == clean_pairs) # duplicates removed and order fixed
 #'
 #' @export
 canonicalize_pairs <- function(pairs, ordered=FALSE) {

@@ -44,6 +44,11 @@ pair_contingency_table_clusters <- function(true, pred) {
 #' [`eval_report_clusters`] computes common evaluation measures derived
 #' from the output of this function.
 #'
+#' @examples
+#' true <- c(1,1,1,2,2)  # ground truth clustering
+#' pred <- c(1,1,2,2,2)  # predicted clustering
+#' contingency_table_clusters(true, pred)
+#'
 #' @export
 #' @importFrom stats xtabs
 contingency_table_clusters <- function(true, pred) {
@@ -80,6 +85,11 @@ contingency_table_clusters <- function(true, pred) {
 #'     \item{mutual_info}{see [`mutual_info`]}
 #'     \item{fowlkes_mallows}{see [`fowlkes_mallows`]}
 #'   }
+#'
+#' @examples
+#' true <- c(1,1,1,2,2)  # ground truth clustering
+#' pred <- c(1,1,2,2,2)  # predicted clustering
+#' eval_report_clusters(true, pred)
 #'
 #' @export
 eval_report_clusters <- function(true, pred) {
@@ -126,6 +136,11 @@ eval_report_clusters <- function(true, pred) {
 #' _Journal of the American Statistical Association_ 66(336), 846-850 (1971).
 #' DOI: [10.1080/01621459.1971.10482356](https://doi.org/10.1080/01621459.1971.10482356)
 #'
+#' @examples
+#' true <- c(1,1,1,2,2)  # ground truth clustering
+#' pred <- c(1,1,2,2,2)  # predicted clustering
+#' rand_index(true, pred)
+#'
 #' @export
 rand_index <- function(true, pred) {
   pair_ct <- pair_contingency_table_clusters(true, pred)
@@ -155,6 +170,11 @@ rand_index <- function(true, pred) {
 #'    are arbitrary.
 #' @param pred predicted clustering represented as a membership
 #'    vector.
+#'
+#' @examples
+#' true <- c(1,1,1,2,2)  # ground truth clustering
+#' pred <- c(1,1,2,2,2)  # predicted clustering
+#' adj_rand_index(true, pred)
 #'
 #' @references
 #' Hubert, L., Arabie, P. "Comparing partitions." _Journal of Classification_
@@ -186,6 +206,11 @@ adj_rand_index <- function(true, pred) {
 #' Fowlkes, E. B. and Mallows, C. L. "A Method for Comparing Two Hierarchical
 #' Clusterings." _Journal of the American Statistical Association_ **78:383**,
 #' 553-569, (1983). DOI: [10.1080/01621459.1983.10478008](https://doi.org/10.1080/01621459.1983.10478008).
+#'
+#' @examples
+#' true <- c(1,1,1,2,2)  # ground truth clustering
+#' pred <- c(1,1,2,2,2)  # predicted clustering
+#' fowlkes_mallows(true, pred)
 #'
 #' @export
 fowlkes_mallows <- function(true, pred) {
@@ -220,6 +245,11 @@ fowlkes_mallows <- function(true, pred) {
 #' measure to _homogeneity_. [`v_measure`] evaluates the harmonic mean of
 #' _completeness_ and _homogeneity_.
 #'
+#' @examples
+#' true <- c(1,1,1,2,2)  # ground truth clustering
+#' pred <- c(1,1,2,2,2)  # predicted clustering
+#' homogeneity(true, pred)
+#'
 #' @export
 homogeneity <- function(true, pred) {
   ct <- contingency_table_clusters(true, pred)
@@ -251,6 +281,11 @@ homogeneity <- function(true, pred) {
 #' @seealso [`homogeneity`] evaluates the _homogeneity_, which is a dual
 #' measure to _completeness_. [`v_measure`] evaluates the harmonic mean of
 #' _completeness_ and _homogeneity_.
+#'
+#' @examples
+#' true <- c(1,1,1,2,2)  # ground truth clustering
+#' pred <- c(1,1,2,2,2)  # predicted clustering
+#' completeness(true, pred)
 #'
 #' @export
 completeness <- function(true, pred) {
@@ -288,6 +323,11 @@ completeness <- function(true, pred) {
 #' @seealso [`homogeneity`] and [`completeness`] evaluate the component
 #' measures upon which this measure is based.
 #'
+#' @examples
+#' true <- c(1,1,1,2,2)  # ground truth clustering
+#' pred <- c(1,1,2,2,2)  # predicted clustering
+#' v_measure(true, pred)
+#'
 #' @export
 v_measure <- function(true, pred) {
   ct <- contingency_table_clusters(true, pred)
@@ -324,6 +364,11 @@ v_measure <- function(true, pred) {
 #' **2777**, Springer, Berlin, Heidelberg, (2003). DOI:
 #' [10.1007/978-3-540-45167-9_14](https://doi.org/10.1007/978-3-540-45167-9_14).
 #'
+#' @examples
+#' true <- c(1,1,1,2,2)  # ground truth clustering
+#' pred <- c(1,1,2,2,2)  # predicted clustering
+#' variation_info(true, pred)
+#'
 #' @export
 variation_info <- function(true, pred, base=exp(1)) {
   ct <- contingency_table_clusters(true, pred)
@@ -346,6 +391,11 @@ variation_info <- function(true, pred, base=exp(1)) {
 #' @param pred predicted clustering represented as a membership
 #'    vector.
 #' @param base base of the logarithm. Defaults to `exp(1)`.
+#'
+#' @examples
+#' true <- c(1,1,1,2,2)  # ground truth clustering
+#' pred <- c(1,1,2,2,2)  # predicted clustering
+#' mutual_info(true, pred)
 #'
 #' @export
 mutual_info <- function(true, pred, base=exp(1)) {

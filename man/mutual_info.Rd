@@ -25,3 +25,9 @@ clusterings, such as a predicted and ground truth clustering.
 Mutual information is an entropy-based measure of the similarity
 between two clusterings.
 }
+\examples{
+true <- c(1,1,1,2,2)  # ground truth clustering
+pred <- c(1,1,2,2,2)  # predicted clustering
+mutual_info(true, pred)
+
+}

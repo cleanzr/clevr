@@ -35,6 +35,12 @@ The RI takes on values between 0 and 1, where 1 denotes exact agreement
 between the clusterings and 0 denotes disagreement on all pairs of
 elements.
 }
+\examples{
+true <- c(1,1,1,2,2)  # ground truth clustering
+pred <- c(1,1,2,2,2)  # predicted clustering
+rand_index(true, pred)
+
+}
 \references{
 Rand, W. M. "Objective Criteria for the Evaluation of Clustering Methods."
 \emph{Journal of the American Statistical Association} 66(336), 846-850 (1971).

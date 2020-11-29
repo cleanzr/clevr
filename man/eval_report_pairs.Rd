@@ -43,6 +43,26 @@ Returns a list containing the following measures:
 Compute various evaluation measures for a set of \emph{predicted}
 coreferent (linked) pairs given a set of \emph{ground truth} coreferent pairs.
 }
+\examples{
+### Example where pairs/edges are undirected
+# ground truth is 3-clique
+true_pairs <- rbind(c(1,2), c(2,3), c(1,3))
+# prediction misses one edge
+pred_pairs <- rbind(c(1,2), c(2,3))
+# total number of pairs assuming 3 elements
+num_pairs <- 3 * (3 - 1) / 2
+eval_report_pairs(true_pairs, pred_pairs, num_pairs)
+
+### Example where pairs/edges are directed
+# ground truth is a 3-star
+true_pairs <- rbind(c(2,1), c(3,1), c(4,1))
+# prediction gets direction of one edge incorrect
+pred_pairs <- rbind(c(2,1), c(3,1), c(1,4))
+# total number of pairs assuming 4 elements
+num_pairs <- 4 * 4
+eval_report_pairs(true_pairs, pred_pairs, num_pairs, ordered = TRUE)
+
+}
 \seealso{
 The \code{\link{contingency_table_pairs}} function can be used to compute
 the contingency table for entity resolution or record linkage problems.

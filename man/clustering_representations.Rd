@@ -74,7 +74,33 @@ represented.
 \description{
 Transform between different representations of a clustering.
 }
-\details{
-TODO: summarize different representations:
-membership, clusters, pairs
+\examples{
+## A clustering of three items represented as a membership vector
+m <- c("Item1" = 1, "Item2" = 2, "Item3" = 1)
+
+# Transform to list of clusters
+membership_to_clusters(m)
+# Specify different identifiers for the items
+membership_to_clusters(m, elem_ids = c(1, 2, 3))
+# Transform to array of pairs that are co-clustered
+membership_to_pairs(m)
+
+## A clustering represented as a list of clusters
+cl <- list("ClustA" = c(1,3), "ClustB" = c(2))
+
+# Transform to membership vector representation
+clusters_to_membership(cl)
+# Transform to array of pairs that are co-clustered
+clusters_to_pairs(cl)
+
+## A clustering (incompletely) represented as an array of pairs that
+## are co-clustered
+p <- rbind(c(1,3))
+ids <- c(1,2,3)    # necessary to specify set of all elements
+
+# Transform to membership vector representation
+pairs_to_membership(p, elem_ids = ids)
+# Transform to list of clusters
+pairs_to_clusters(p, elem_ids = ids)
+
 }
