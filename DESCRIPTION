@@ -28,12 +28,9 @@ Imports: Rcpp (>= 1.0.5),
 LinkingTo: Rcpp, BH (>= 1.69.0)
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
-Suggests: knitr,
-    rmarkdown,
-    testthat
+Suggests: testthat
 URL: https://github.com/cleanzr/clevr
 BugReports: https://github.com/cleanzr/clevr/issues
-VignetteBuilder: knitr
 Collate: 
     'RcppExports.R'
     'clevr.R'
