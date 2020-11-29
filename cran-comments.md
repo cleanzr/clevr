@@ -6,8 +6,4 @@ First release on CRAN.
 
 ## R CMD check results
 
-Maintainer: 'Neil Marchant <ngmarchant@gmail.com>'
-  
-  New submission
-
-0 errors v | 0 warnings v | 1 note x
+0 errors v | 0 warnings v | 0 note v
