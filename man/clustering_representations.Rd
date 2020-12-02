@@ -95,12 +95,12 @@ clusters_to_pairs(cl)
 
 ## A clustering (incompletely) represented as an array of pairs that
 ## are co-clustered
-p <- rbind(c(1,3))
+p <- rbind(c(1,3)) # pairs of elements in the same cluster
 ids <- c(1,2,3)    # necessary to specify set of all elements
 
 # Transform to membership vector representation
-pairs_to_membership(p, elem_ids = ids)
+pairs_to_membership(p, ids)
 # Transform to list of clusters
-pairs_to_clusters(p, elem_ids = ids)
+pairs_to_clusters(p, ids)
 
 }
