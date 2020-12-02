@@ -9,11 +9,17 @@
 
 clevr implements functions for evaluating link prediction and clustering
 algorithms in R. It includes efficient implementations of common
-performance measures, such as: \* pairwise precision, recall, F-measure;
-\* homogeneity, completeness and V-measure; \* (adjusted) Rand index; \*
-variation of information; and \* mutual information. While the current
-focus is on supervised (a.k.a. external) performance measures,
-unsupervised (internal) measures are also in scope for future releases.
+performance measures, such as:
+
+  - pairwise precision, recall, F-measure;
+  - homogeneity, completeness and V-measure;
+  - (adjusted) Rand index;
+  - variation of information; and
+  - mutual information.
+
+While the current focus is on supervised (a.k.a. external) performance
+measures, unsupervised (internal) measures are also in scope for future
+releases.
 
 ## Installation
 
@@ -39,7 +45,7 @@ clustering representations.
 ``` r
 library(clevr)
 # A clustering of four records represented as a membership vector
-pred_membership <- c("Record1" = 1, "Record2" = 1, "Record3" = 1, "Record 4" = 2)
+pred_membership <- c("Record1" = 1, "Record2" = 1, "Record3" = 1, "Record4" = 2)
 
 # Represent as a set of record pairs that appear in the same cluster
 pred_pairs <- membership_to_pairs(pred_membership)
@@ -56,7 +62,7 @@ print(pred_clusters)
 #> [1] "Record1" "Record2" "Record3"
 #> 
 #> $`2`
-#> [1] "Record 4"
+#> [1] "Record4"
 ```
 
 Performance measures are available for evaluating linked pairs:
@@ -76,7 +82,7 @@ print(re)
 and for evaluating clusterings:
 
 ``` r
-true_membership <- c("Record1" = 1, "Record2" = 1, "Record3" = 2, "Record 4" = 2)
+true_membership <- c("Record1" = 1, "Record2" = 1, "Record3" = 2, "Record4" = 2)
 
 ari <- adj_rand_index(true_membership, pred_membership)
 print(ari)
