@@ -313,6 +313,10 @@ completeness <- function(true, pred) {
 #'    are arbitrary.
 #' @param pred predicted clustering represented as a membership
 #'    vector.
+#' @param beta non-negative weight. A value of 0 assigns no weight to
+#'   completeness (i.e. the measure reduces to homogeneity), while larger
+#'   values assign increasing weight to completeness. A value of 1 weights
+#'   completeness and homogeneity equally.
 #'
 #' @references
 #' Rosenberg, A. and Hirschberg, J. "V-measure: A conditional entropy-based external cluster evaluation measure." _Proceedings of the 2007 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning_ (EMNLP-CoNLL), (2007).
@@ -329,9 +333,9 @@ completeness <- function(true, pred) {
 #' v_measure(true, pred)
 #'
 #' @export
-v_measure <- function(true, pred) {
+v_measure <- function(true, pred, beta=1) {
   ct <- contingency_table_clusters(true, pred)
-  v_measure_ct(ct)
+  v_measure_ct(ct, beta=beta)
 }
 
 
@@ -481,8 +485,8 @@ v_measure_ct <- function(ct, beta=1.0) {
   entropy_true <- entropy_counts(true_counts)
   entropy_pred <- entropy_counts(pred_counts)
   mi <- mutual_info_ct(ct)
-  completeness <- ifelse(entropy_true==0, 1.0, mi / entropy_true)
-  homogeneity <- ifelse(entropy_pred==0, 1.0, mi / entropy_pred)
+  homogeneity <- ifelse(entropy_true==0, 1.0, mi / entropy_true)
+  completeness <- ifelse(entropy_pred==0, 1.0, mi / entropy_pred)
   alpha <- 1/(1 + beta^2)
   1 / (alpha / homogeneity + (1 - alpha) / completeness)
 }

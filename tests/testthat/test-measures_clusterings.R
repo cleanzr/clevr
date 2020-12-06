@@ -96,3 +96,10 @@ for (measure_name in names(measures_to_test)) {
     })
   }
 }
+
+test_that("V-Measure is correct for a simple example when beta != 1", {
+  true <- c(1,1,2,2,2)
+  pred <- c(1,1,1,2,2)
+  expect_equal(v_measure(true, pred, beta = 0), homogeneity(true, pred))
+  expect_equal(v_measure(true, pred, beta = Inf), completeness(true, pred))
+})
