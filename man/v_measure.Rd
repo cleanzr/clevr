@@ -4,7 +4,7 @@
 \alias{v_measure}
 \title{V-measure Between Clusterings}
 \usage{
-v_measure(true, pred)
+v_measure(true, pred, beta = 1)
 }
 \arguments{
 \item{true}{ground truth clustering represented as a membership
@@ -14,6 +14,11 @@ are arbitrary.}
 
 \item{pred}{predicted clustering represented as a membership
 vector.}
+
+\item{beta}{non-negative weight. A value of 0 assigns no weight to
+completeness (i.e. the measure reduces to homogeneity), while larger
+values assign increasing weight to completeness. A value of 1 weights
+completeness and homogeneity equally.}
 }
 \description{
 Computes the V-measure between two clusterings, such
