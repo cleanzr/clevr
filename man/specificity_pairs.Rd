@@ -30,7 +30,7 @@ Computes the specificity of a set of \emph{predicted} coreferent
 }
 \details{
 The specificity is defined as:
-\deqn{\frac{|P' \cup T'|}{|P'|}}{|P' ∩ T'|/|P'|}
+\deqn{\frac{|P' \cap T'|}{|P'|}}{|P' ∩ T'|/|P'|}
   where \eqn{T'} is the set of true non-coreferent pairs, \eqn{P} is the
 set of predicted non-coreferent pairs.
 }

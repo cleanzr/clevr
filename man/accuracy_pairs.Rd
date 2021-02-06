@@ -30,7 +30,7 @@ Computes the accuracy of a set of \emph{predicted} coreferent
 }
 \details{
 The accuracy is defined as:
-\deqn{\frac{|T \cup P| + |T' \cup P'|}{N}}{(|T ∩ P| + |T' ∩ P'|)/N}
+\deqn{\frac{|T \cap P| + |T' \cap P'|}{N}}{(|T ∩ P| + |T' ∩ P'|)/N}
   where:
 \itemize{
 \item \eqn{T} is the set of true coreferent pairs,

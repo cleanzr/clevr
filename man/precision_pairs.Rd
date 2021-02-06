@@ -27,7 +27,7 @@ Computes the precision of a set of \emph{predicted} coreferent
 }
 \details{
 The precision is defined as:
-\deqn{\frac{|T \cup P|}{|P|}}{|T ∩ P|/|P|}
+\deqn{\frac{|T \cap P|}{|P|}}{|T ∩ P|/|P|}
   where \eqn{T} is the set of true coreferent pairs and \eqn{P} is the
 set of predicted coreferent pairs.
 }
