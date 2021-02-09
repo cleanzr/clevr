@@ -31,7 +31,7 @@ pairs.
 }
 \details{
 The balanced accuracy is defined as:
-\deqn{\frac{\frac{|T \cup P|}{|P|} + \frac{|T' \cup P'|}{|P'|}}{2}}{|T ∩ P|/(2|P|) + |T' ∩ P'|/(2|P'|)}
+\deqn{\frac{\frac{|T \cap P|}{|P|} + \frac{|T' \cap P'|}{|P'|}}{2}}{|T ∩ P|/(2|P|) + |T' ∩ P'|/(2|P'|)}
   where:
 \itemize{
 \item \eqn{T} is the set of true coreferent pairs,

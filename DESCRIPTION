@@ -11,7 +11,11 @@ Authors@R: c(
     person(given = "Rebecca",
            family = "Steorts", 
            email = "beka@stat.duke.edu",
-           role = c("aut")))
+           role = c("aut")),
+    person(given = "Olivier",
+           family = "Binette",
+           email = "olivier.binette@gmail.com",
+           role = c("ctb")))
 Maintainer: Neil Marchant <ngmarchant@gmail.com>
 Description: Tools for evaluating link prediction and clustering algorithms 
     with respect to ground truth. Includes efficient implementations of 

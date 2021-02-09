@@ -30,7 +30,7 @@ Computes the precision of a set of \emph{predicted} coreferent
 }
 \details{
 The recall is defined as:
-\deqn{\frac{|T \cup P|}{|T|}}{|T ∩ P|/|T|}
+\deqn{\frac{|T \cap P|}{|T|}}{|T ∩ P|/|T|}
   where \eqn{T} is the set of true coreferent pairs and \eqn{P} is the
 set of predicted coreferent pairs.
 }
