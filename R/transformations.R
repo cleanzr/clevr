@@ -273,6 +273,8 @@ pairs_to_clusters <- function(pairs, elem_ids) {
 canonicalize_pairs <- function(pairs, ordered=FALSE) {
   if (ncol(pairs) != 2) stop("`pairs` must have exactly two columns")
 
+  orig_colnames <- colnames(pairs)
+
   pairs <- as.matrix(pairs)
 
   if (nrow(pairs) == 0) return(pairs)
@@ -281,6 +283,9 @@ canonicalize_pairs <- function(pairs, ordered=FALSE) {
   if (!ordered) {
     pairs <- t(apply(pairs, 1, sort))
   }
+
+  # Restore colnames
+  colnames(pairs) <- orig_colnames
 
   # Remove duplicate rows
   pairs <- unique(pairs)
