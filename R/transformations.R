@@ -252,7 +252,8 @@ pairs_to_clusters <- function(pairs, elem_ids) {
 #' testing of equivalence.
 #'
 #' @param pairs a matrix or data.frame of element pairs where rows correspond
-#'   to element pairs and columns correspond to element identifiers.
+#'   to element pairs and columns correspond to element identifiers. Any
+#'   rows containing missing identifiers are removed.
 #' @param ordered whether to treat the element pairs as ordered---i.e. whether
 #'   pair \eqn{(x, y)} is distinct from pair \eqn{(y, x)} for \eqn{x \neq y}.
 #'   Defaults to FALSE, which is appropriate for clustering, undirected link
@@ -260,6 +261,7 @@ pairs_to_clusters <- function(pairs, elem_ids) {
 #' @return Returns the element pairs in canonical form, so that:
 #'   * the first element id precedes the second element id lexicographically
 #'     if `ordered = FALSE`---i.e. pair (3, 2) becomes pair (2, 3);
+#'   * pairs with missing element ids are removed;
 #'   * duplicate pairs are removed; and
 #'   * the rows in the matrix/data.frame pairs are sorted lexicographically
 #'     by the first element id, then by the second element id.
@@ -269,13 +271,19 @@ pairs_to_clusters <- function(pairs, elem_ids) {
 #' clean_pairs <- canonicalize_pairs(messy_pairs)
 #' all(rbind(c(1,2), c(1,3)) == clean_pairs) # duplicates removed and order fixed
 #'
+#' @importFrom stats complete.cases
 #' @export
 canonicalize_pairs <- function(pairs, ordered=FALSE) {
   if (ncol(pairs) != 2) stop("`pairs` must have exactly two columns")
 
   orig_colnames <- colnames(pairs)
 
+  # By coercing to matrix we ensure columns have the same type (crucial for
+  # lexicographic ordering), which may not be the case for data frames
   pairs <- as.matrix(pairs)
+
+  # Canonical form does not allow for missing identifiers
+  pairs <- pairs[complete.cases(pairs), , drop=FALSE]
 
   if (nrow(pairs) == 0) return(pairs)
 

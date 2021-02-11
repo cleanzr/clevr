@@ -8,7 +8,8 @@ canonicalize_pairs(pairs, ordered = FALSE)
 }
 \arguments{
 \item{pairs}{a matrix or data.frame of element pairs where rows correspond
-to element pairs and columns correspond to element identifiers.}
+to element pairs and columns correspond to element identifiers. Any
+rows containing missing identifiers are removed.}
 
 \item{ordered}{whether to treat the element pairs as ordered---i.e. whether
 pair \eqn{(x, y)} is distinct from pair \eqn{(y, x)} for \eqn{x \neq y}.

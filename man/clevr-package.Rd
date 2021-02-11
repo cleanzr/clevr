@@ -28,5 +28,10 @@ Authors:
   \item Rebecca Steorts \email{beka@stat.duke.edu}
 }
 
+Other contributors:
+\itemize{
+  \item Olivier Binette \email{olivier.binette@gmail.com} [contributor]
+}
+
 }
 \keyword{internal}

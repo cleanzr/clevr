@@ -150,6 +150,12 @@ test_that("duplicate pairs are removed", {
                rbind(c(1,2)))
 })
 
+test_that("pairs with missing identifiers are removed", {
+  pairs <- rbind(c(NA, NA), c(1, 2), c(1, NA))
+  expect_equal(canonicalize_pairs(pairs),
+               rbind(c(1, 2)))
+})
+
 test_that("column names are preserved in output", {
   pairs <- cbind(id1 = c(1, 2), id2 = c(2, 1))
   expect_equal(canonicalize_pairs(pairs),
