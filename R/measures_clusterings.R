@@ -1,6 +1,6 @@
 
 #' @importFrom stats xtabs
-#' @importFrom Matrix rowSums colSums tcrossprod crossprod
+#' @importFrom Matrix rowSums colSums crossprod
 #' @noRd
 pair_contingency_table_clusters <- function(true, pred) {
   if (length(true) != length(pred))
@@ -17,9 +17,9 @@ pair_contingency_table_clusters <- function(true, pred) {
   num_items <- length(true)
   pair_ct <- matrix(nrow = 2, ncol = 2, data = NA_integer_)
   pair_ct[1,1] <- sum_squares - num_items # TP
-  pair_ct[2,1] <- sum(tcrossprod(ct, sizes_true)) - sum_squares # FP
+  pair_ct[2,1] <- sum(ct %*% sizes_true) - sum_squares # FP
   pair_ct[1,2] <- sum(crossprod(ct, sizes_pred)) - sum_squares # FN
-  pair_ct[2,2] <- num_items ** 2 - pair_ct[1,2] - pair_ct[2,1] - sum_squares # TN
+  pair_ct[2,2] <- num_items^2 - pair_ct[1,2] - pair_ct[2,1] - sum_squares # TN
   dimnames(pair_ct) <- list("Prediction" = c("TRUE", "FALSE"), "Truth" = c("TRUE", "FALSE"))
   return(as.table(pair_ct))
 }
