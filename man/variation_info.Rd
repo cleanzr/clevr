@@ -37,10 +37,10 @@ variation_info(true, pred)
 \references{
 Arabie, P. and Boorman, S. A. "Multidimensional scaling of measures of
 distance between partitions." \emph{Journal of Mathematical Psychology} \strong{10:2},
-148-203, (1973). DOI: \href{https://doi.org/10.1016/0022-2496(73)90012-6}{10.1016/0022-2496(73)90012-6}.
+148-203, (1973). \doi{10.1016/0022-2496(73)90012-6}
 
 Meilă, M. "Comparing Clusterings by the Variation of Information." In:
 Learning Theory and Kernel Machines, Lecture Notes in Computer Science
-\strong{2777}, Springer, Berlin, Heidelberg, (2003). DOI:
-\href{https://doi.org/10.1007/978-3-540-45167-9_14}{10.1007/978-3-540-45167-9_14}.
+\strong{2777}, Springer, Berlin, Heidelberg, (2003).
+\doi{10.1007/978-3-540-45167-9_14}
 }

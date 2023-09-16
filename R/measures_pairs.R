@@ -437,7 +437,7 @@ balanced_accuracy_pairs <- function(true_pairs, pred_pairs, num_pairs, ordered=F
 #' @references
 #' Fowlkes, E. B. and Mallows, C. L. "A Method for Comparing Two Hierarchical
 #' Clusterings." _Journal of the American Statistical Association_ **78:383**,
-#' 553-569, (1983). DOI: [10.1080/01621459.1983.10478008](https://doi.org/10.1080/01621459.1983.10478008).
+#' 553-569, (1983). \doi{10.1080/01621459.1983.10478008}.
 #'
 #' @examples
 #' true_pairs <- rbind(c(1,2), c(2,3), c(1,3)) # ground truth is 3-clique

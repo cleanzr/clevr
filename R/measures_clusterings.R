@@ -134,7 +134,7 @@ eval_report_clusters <- function(true, pred) {
 #' @references
 #' Rand, W. M. "Objective Criteria for the Evaluation of Clustering Methods."
 #' _Journal of the American Statistical Association_ 66(336), 846-850 (1971).
-#' DOI: [10.1080/01621459.1971.10482356](https://doi.org/10.1080/01621459.1971.10482356)
+#' \doi{10.1080/01621459.1971.10482356}
 #'
 #' @examples
 #' true <- c(1,1,1,2,2)  # ground truth clustering
@@ -178,7 +178,7 @@ rand_index <- function(true, pred) {
 #'
 #' @references
 #' Hubert, L., Arabie, P. "Comparing partitions." _Journal of Classification_
-#' **2**, 193–218 (1985). DOI: [10.1007/BF01908075](https://doi.org/10.1007/BF01908075)
+#' **2**, 193–218 (1985). \doi{10.1007/BF01908075}
 #'
 #' @export
 adj_rand_index <- function(true, pred) {
@@ -205,7 +205,7 @@ adj_rand_index <- function(true, pred) {
 #' @references
 #' Fowlkes, E. B. and Mallows, C. L. "A Method for Comparing Two Hierarchical
 #' Clusterings." _Journal of the American Statistical Association_ **78:383**,
-#' 553-569, (1983). DOI: [10.1080/01621459.1983.10478008](https://doi.org/10.1080/01621459.1983.10478008).
+#' 553-569, (1983). \doi{10.1080/01621459.1983.10478008}
 #'
 #' @examples
 #' true <- c(1,1,1,2,2)  # ground truth clustering
@@ -361,12 +361,12 @@ v_measure <- function(true, pred, beta=1) {
 #' @references
 #' Arabie, P. and Boorman, S. A. "Multidimensional scaling of measures of
 #' distance between partitions." _Journal of Mathematical Psychology_ **10:2**,
-#' 148-203, (1973). DOI: [10.1016/0022-2496(73)90012-6](https://doi.org/10.1016/0022-2496(73)90012-6).
+#' 148-203, (1973). \doi{10.1016/0022-2496(73)90012-6}
 #'
 #' Meilă, M. "Comparing Clusterings by the Variation of Information." In:
 #' Learning Theory and Kernel Machines, Lecture Notes in Computer Science
-#' **2777**, Springer, Berlin, Heidelberg, (2003). DOI:
-#' [10.1007/978-3-540-45167-9_14](https://doi.org/10.1007/978-3-540-45167-9_14).
+#' **2777**, Springer, Berlin, Heidelberg, (2003).
+#' \doi{10.1007/978-3-540-45167-9_14}
 #'
 #' @examples
 #' true <- c(1,1,1,2,2)  # ground truth clustering

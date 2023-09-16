@@ -6,11 +6,7 @@
 \alias{clevr-package}
 \title{clevr: Clustering and Link Prediction Evaluation in R}
 \description{
-Tools for evaluating link prediction and clustering algorithms 
-    with respect to ground truth. Includes efficient implementations of 
-    common performance measures such as pairwise precision/recall, 
-    cluster homogeneity/completeness, variation of information, 
-    Rand index etc.
+Tools for evaluating link prediction and clustering algorithms with respect to ground truth. Includes efficient implementations of common performance measures such as pairwise precision/recall, cluster homogeneity/completeness, variation of information, Rand index etc.
 }
 \seealso{
 Useful links:

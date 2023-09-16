@@ -44,5 +44,5 @@ rand_index(true, pred)
 \references{
 Rand, W. M. "Objective Criteria for the Evaluation of Clustering Methods."
 \emph{Journal of the American Statistical Association} 66(336), 846-850 (1971).
-DOI: \href{https://doi.org/10.1080/01621459.1971.10482356}{10.1080/01621459.1971.10482356}
+\doi{10.1080/01621459.1971.10482356}
 }

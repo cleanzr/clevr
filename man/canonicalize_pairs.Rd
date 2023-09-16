@@ -20,6 +20,7 @@ Returns the element pairs in canonical form, so that:
 \itemize{
 \item the first element id precedes the second element id lexicographically
 if \code{ordered = FALSE}---i.e. pair (3, 2) becomes pair (2, 3);
+\item pairs with missing element ids are removed;
 \item duplicate pairs are removed; and
 \item the rows in the matrix/data.frame pairs are sorted lexicographically
 by the first element id, then by the second element id.

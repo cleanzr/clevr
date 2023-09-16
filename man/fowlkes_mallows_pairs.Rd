@@ -40,5 +40,5 @@ fowlkes_mallows_pairs(true_pairs, pred_pairs, num_pairs)
 \references{
 Fowlkes, E. B. and Mallows, C. L. "A Method for Comparing Two Hierarchical
 Clusterings." \emph{Journal of the American Statistical Association} \strong{78:383},
-553-569, (1983). DOI: \href{https://doi.org/10.1080/01621459.1983.10478008}{10.1080/01621459.1983.10478008}.
+553-569, (1983). \doi{10.1080/01621459.1983.10478008}.
 }

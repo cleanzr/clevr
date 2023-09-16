@@ -39,5 +39,5 @@ adj_rand_index(true, pred)
 }
 \references{
 Hubert, L., Arabie, P. "Comparing partitions." \emph{Journal of Classification}
-\strong{2}, 193–218 (1985). DOI: \href{https://doi.org/10.1007/BF01908075}{10.1007/BF01908075}
+\strong{2}, 193–218 (1985). \doi{10.1007/BF01908075}
 }
