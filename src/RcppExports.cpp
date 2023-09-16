@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // pairs_to_membership_cpp
 IntegerVector pairs_to_membership_cpp(const IntegerMatrix& pairs, int num_records);
 RcppExport SEXP _clevr_pairs_to_membership_cpp(SEXP pairsSEXP, SEXP num_recordsSEXP) {

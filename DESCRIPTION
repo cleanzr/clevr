@@ -1,8 +1,8 @@
 Package: clevr
 Type: Package
 Title: Clustering and Link Prediction Evaluation in R
-Version: 0.1.1
-Date: 2020-11-29
+Version: 0.1.2
+Date: 2023-09-16
 Authors@R: c(
     person(given = "Neil", 
            family = "Marchant", 
@@ -29,7 +29,7 @@ Imports: Rcpp (>= 1.0.5),
     stats,
     Matrix
 LinkingTo: Rcpp, BH (>= 1.69.0)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 Suggests: testthat
 URL: https://github.com/cleanzr/clevr
