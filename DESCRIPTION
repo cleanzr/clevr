@@ -24,7 +24,6 @@ Description: Tools for evaluating link prediction and clustering algorithms
     Rand index etc.
 License: GPL-2
 Encoding: UTF-8
-LazyData: true
 Depends: R (>= 3.0.2)
 Imports: Rcpp (>= 1.0.5),
     stats,
